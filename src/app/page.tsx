@@ -106,14 +106,14 @@ function NavDropdown({
   items: { slug: string; title: string }[];
 }) {
   return (
-    <li className="group relative h-[36px] leading-[36px] border border-solid border-[#21437c] px-[30px] hover:bg-[#3a5cac] hover:border-[#5875b5] cursor-pointer">
+    <li className="group relative h-[38px] leading-[38px] mt-[6px] px-[30px] hover:bg-[#3a5cac] hover:outline hover:outline-1 hover:outline-[#5875b5] cursor-pointer">
       <a
         href="#"
         className="text-[14px] font-bold text-[#ffcb05] no-underline uppercase whitespace-nowrap"
       >
         {label}
       </a>
-      <ul className="hidden group-hover:block absolute top-[36px] left-0 w-[305px] z-[200] border-b border-solid border-[#6281b6] bg-[#2a4075] p-0 m-0">
+      <ul className="hidden group-hover:block absolute top-[38px] left-0 w-[305px] z-[200] border-b border-solid border-[#6281b6] bg-[#2a4075] p-0 m-0">
         {items.map((item) => (
           <li
             key={item.slug}
@@ -134,7 +134,7 @@ function NavDropdown({
 
 function NavItem({ label }: { label: string }) {
   return (
-    <li className="h-[36px] leading-[36px] border border-solid border-[#21437c] px-[30px] hover:bg-[#3a5cac] hover:border-[#5875b5] cursor-pointer">
+    <li className="h-[38px] leading-[38px] mt-[6px] px-[30px] hover:bg-[#3a5cac] hover:outline hover:outline-1 hover:outline-[#5875b5] cursor-pointer">
       <a
         href="#"
         className="text-[14px] font-bold text-[#ffcb05] no-underline uppercase whitespace-nowrap"
@@ -159,11 +159,13 @@ function EpisodeRow({ ep }: { ep: (typeof latestEpisodes)[0] }) {
         </a>
       </div>
       <div className="flex-1">
-        <a href="#" className="text-[#ffdb4f] no-underline block">
-          <h2 className="text-[#ffdb4f] text-[16px] border-b border-solid border-[#ffdb4f] pb-[7px] mb-[8px] transition-colors duration-200 hover:text-[#007AFF]">
-            {ep.title}
-          </h2>
-        </a>
+        <div className="mb-[12px]">
+          <a href="#" className="text-[#ffdb4f] no-underline">
+            <h2 className="text-[#ffdb4f] text-[16px] border-b border-solid border-[#ffdb4f] pb-[3px] inline transition-colors duration-200 hover:text-[#007AFF]">
+              {ep.title}
+            </h2>
+          </a>
+        </div>
         <div className="border-b border-solid border-[#557cc2] pb-[10px] text-[12px] leading-[18px]">
           <b>Episodes event: </b>
           {ep.desc}
@@ -258,13 +260,19 @@ export default function Home() {
           </div>
 
           {/* Navigation */}
-          <div className="flex" style={{ width: 950 }}>
+          <div
+            className="flex"
+            style={{
+              width: 950,
+            }}
+          >
             <div
               style={{
                 width: 8,
                 height: 48,
                 backgroundImage: "url('/images/navi_left.png')",
                 backgroundRepeat: "no-repeat",
+                backgroundSize: "8px 48px",
                 flexShrink: 0,
               }}
             />
@@ -276,7 +284,7 @@ export default function Home() {
                 backgroundRepeat: "repeat-x",
               }}
             >
-              <ul className="flex h-full items-start pt-[6px]">
+              <ul className="flex h-full items-start [&>li:first-child]:ml-[-4px]">
                 <NavDropdown label="Seasons" items={seasons} />
                 <NavItem label="Movies" />
                 <NavDropdown
@@ -292,10 +300,11 @@ export default function Home() {
             </div>
             <div
               style={{
-                width: 18,
+                width: 8,
                 height: 48,
                 backgroundImage: "url('/images/navi_right.png')",
                 backgroundRepeat: "no-repeat",
+                backgroundSize: "8px 48px",
                 flexShrink: 0,
               }}
             />
@@ -336,11 +345,13 @@ export default function Home() {
                     </a>
                   </div>
                   <div className="flex-1">
-                    <a href="#" className="text-[#ffdb4f] no-underline block">
-                      <h2 className="text-[#ffdb4f] text-[16px] border-b border-solid border-[#ffdb4f] pb-[7px] mb-[8px] hover:text-[#007AFF] transition-colors">
-                        Watch Pokemon Episode 1 &ndash; Pokemon I Choose You
-                      </h2>
-                    </a>
+                    <div className="mb-[12px]">
+                      <a href="#" className="text-[#ffdb4f] no-underline">
+                        <h2 className="text-[#ffdb4f] text-[16px] border-b border-solid border-[#ffdb4f] pb-[3px] inline transition-colors duration-200 hover:text-[#007AFF]">
+                          Watch Pokemon Episode 1 &ndash; Pokemon I Choose You
+                        </h2>
+                      </a>
+                    </div>
                     <div className="border-b border-solid border-[#557cc2] pb-[10px] text-[12px] leading-[18px]">
                       <b>Episodes event: </b>The episode that starts it all. Ash
                       arrives late to pick his first Pokemon.
@@ -350,32 +361,32 @@ export default function Home() {
               </BluePanel>
 
               {/* Season Banners */}
-              <div className="flex justify-center mt-[15px] gap-[4px]">
-                <a href="#">
+              <div className="flex mt-[15px] gap-[4px]">
+                <a href="#" className="flex-1 block" style={{ border: "2px solid white" }}>
                   <Image
                     src="/seasons/season1.png"
                     width={200}
                     height={91}
                     alt="Season 1: Indigo League"
-                    style={{ border: "2px solid white" }}
+                    className="w-full h-auto block"
                   />
                 </a>
-                <a href="#">
+                <a href="#" className="flex-1 block" style={{ border: "2px solid white" }}>
                   <Image
                     src="/seasons/season8.png"
                     width={200}
                     height={91}
-                    alt="Season 7: Advanced Challenge"
-                    style={{ border: "2px solid white" }}
+                    alt="Season 8: Advanced Battle"
+                    className="w-full h-auto block"
                   />
                 </a>
-                <a href="#">
+                <a href="#" className="flex-1 block" style={{ border: "2px solid white" }}>
                   <Image
                     src="/seasons/season14.png"
                     width={200}
                     height={91}
                     alt="Season 14: Black and White"
-                    style={{ border: "2px solid white" }}
+                    className="w-full h-auto block"
                   />
                 </a>
               </div>
